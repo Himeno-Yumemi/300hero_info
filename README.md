@@ -18,9 +18,9 @@
 ## 鸣谢
 <a href="https://github.com/Mrs4s/go-cqhttp" target="_BLANK">go-cqhttp</a>\
 <a href="https://github.com/Ice-Cirno/HoshinoBot" target="_BLANK">HoshinoBot</a>\
-<a href="https://300report.jumpw.com/" target="_BLANK">300英雄战报分析</a>\
+<a href="https://300report.jumpw.com/" target="_BLANK">300英雄战报分析</a>
 ## API
-<a href="https://300report.jumpw.com/static/doc/openapi.txt" target="_BLANK">300英雄战报分析api文档</a>\
+<a href="https://300report.jumpw.com/static/doc/openapi.txt" target="_BLANK">300英雄战报分析api文档</a>
 ## 更新日志
 ### 2021/10/21
 首次上传
