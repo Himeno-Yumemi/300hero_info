@@ -157,7 +157,7 @@ async def rank_score(bot, ev):
         msg='\n查询不到该角色信息，可能是近期未进行过对局！'
     await bot.send(ev, msg,at_sender=True)
 
-async def xinxi(key,judge,user_name,uid):
+async def xinxi(key,judge,user_name,MatchType):
     try:
         url='https://300report.jumpw.com/api/getmatch?id={}'.format(key)
         data=await getjson(url)
@@ -172,7 +172,12 @@ async def xinxi(key,judge,user_name,uid):
                     AssistCount=item["AssistCount"]
                     KillUnitCount=item["KillUnitCount"]
                     TotalMoney=item["TotalMoney"]
-                    cord=f'{KillCount}/{DeathCount}/{AssistCount}/{KillUnitCount}/{TotalMoney}'
+                    if MatchType == 1:
+                        cord=f'{KillCount}/{DeathCount}/{AssistCount}/{KillUnitCount}/{TotalMoney}'
+                    elif MatchType == 2:
+                        cord=f'{KillCount}/{DeathCount}/{AssistCount}'
+                    else:
+                        cord=f'{KillCount}/{DeathCount}/{AssistCount}/{KillUnitCount}/{TotalMoney}'
         elif judge == 2:
             for item in LoseSide:
                 if item["RoleName"]==user_name:
@@ -181,7 +186,12 @@ async def xinxi(key,judge,user_name,uid):
                     AssistCount=item["AssistCount"]
                     KillUnitCount=item["KillUnitCount"]
                     TotalMoney=item["TotalMoney"]
-                    cord=f'{KillCount}/{DeathCount}/{AssistCount}'
+                    if MatchType == 1:
+                        cord=f'{KillCount}/{DeathCount}/{AssistCount}/{KillUnitCount}/{TotalMoney}'
+                    elif MatchType == 2:
+                        cord=f'{KillCount}/{DeathCount}/{AssistCount}'
+                    else:
+                        cord=f'{KillCount}/{DeathCount}/{AssistCount}/{KillUnitCount}/{TotalMoney}'
         else:
             for item in WinSide:
                 if item["RoleName"]==user_name:
@@ -197,7 +207,12 @@ async def xinxi(key,judge,user_name,uid):
                     AssistCount=item["AssistCount"]
                     KillUnitCount=item["KillUnitCount"]
                     TotalMoney=item["TotalMoney"]
-            cord=f'{KillCount}/{DeathCount}/{AssistCount}/{KillUnitCount}/{TotalMoney}'
+            if MatchType == 1:
+                cord=f'{KillCount}/{DeathCount}/{AssistCount}/{KillUnitCount}/{TotalMoney}'
+            elif MatchType == 2:
+                cord=f'{KillCount}/{DeathCount}/{AssistCount}'
+            else:
+                cord=f'{KillCount}/{DeathCount}/{AssistCount}/{KillUnitCount}/{TotalMoney}'
     except Exception as e:
         print(e)
     return cord
@@ -232,8 +247,8 @@ async def battlefield_game(bot, ev):
         for item in List:
             MatchID=item["MatchID"]
             MatchType=item["MatchType"]
-            Result=item["Result"]
             Judge=item["Result"]
+            Result=item["Result"]
             Hero=item["Hero"]["Name"]
             if MatchType != 2:
                 continue
@@ -243,7 +258,7 @@ async def battlefield_game(bot, ev):
                 Result="[CQ:face,id=177]"
             else:
                 Result="[CQ:face,id=37]"
-            Record=await xinxi(MatchID,Judge,key,uid)
+            Record=await xinxi(MatchID,Judge,key,MatchType)
             if Record == "":
                 continue
             msg += f'\n【{Result}{Hero}】{Record}'
@@ -295,7 +310,7 @@ async def arena_game(bot, ev):
                 Result="[CQ:face,id=177]"
             else:
                 Result="[CQ:face,id=37]"
-            Record=await xinxi(MatchID,Judge,key,uid)
+            Record=await xinxi(MatchID,Judge,key,MatchType)
             if Record == "":
                 continue
             msg += f'\n【{Result}{Hero}】{Record}'
