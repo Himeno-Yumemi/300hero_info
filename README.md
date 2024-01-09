@@ -1,5 +1,5 @@
 # 300hero_info
-由于战绩查询接口已关闭，本插件归档
+重构版移步至<a href="https://github.com/Himeno-Yumemi/300hero_record" target="_BLANK">300英雄战报分析</a>
 ## 功能介绍
 在群内绑定300英雄角色ID，实现群内获取角色团分，对局信息等功能。
 ## 具体操作
